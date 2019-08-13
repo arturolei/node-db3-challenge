@@ -1,5 +1,4 @@
-const knex = require('knex');
-const db = knex(require('../knexfile').development);
+const db = require('../data/db-config.js');
 
 
 module.exports = {
@@ -25,12 +24,13 @@ function findSteps(id) {
   .innerJoin("schemes", 'schemes.id', 'steps.scheme_id' ).where({ scheme_id: id });
 }
 
-function add({ scheme_name }) {
- return db('schemes').insert({ scheme_name });
+async function add(schemeData) {
+ const [id] = await db('schemes').insert(schemeData)
+ return findById(id);
 }
 
-function update({ scheme_name }, id) {
-  return db('schemes').where({ id }).update({ scheme_name });
+function update(schemeData, id) {
+  return db('schemes').where({ id }).update(schemeData);
 }
 
 function remove(id) {

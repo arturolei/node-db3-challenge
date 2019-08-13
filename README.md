@@ -11,7 +11,7 @@
 
 For this lab you will
 
-- [] write SQL statements against a pre-populated database using an online tool. Once you have the correct SQL Statement for each query, write it inside the queries.md file under the appropriate heading.
+- [X] write SQL statements against a pre-populated database using an online tool. Once you have the correct SQL Statement for each query, write it inside the queries.md file under the appropriate heading.
 - [] write the db helper methods for the `schemes` resource in `./schemes/scheme-model.js`
 
 ### Multi Table Queries
