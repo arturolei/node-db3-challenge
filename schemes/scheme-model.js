@@ -20,8 +20,8 @@ function find() {
  }
 
 function findSteps(id) {
-  return db.select('scheme_name', "step_number", "instructions","steps.id").from('steps')
-  .innerJoin("schemes", 'schemes.id', 'steps.scheme_id' ).where({ scheme_id: id });
+  return db.select('steps.id','scheme_name', 'step_number', 'instructions').from('steps')
+  .innerJoin("schemes", 'schemes.id', 'steps.scheme_id' ).where({ scheme_id: id }).orderBy('steps.step_number');
 }
 
 async function add(schemeData) {
