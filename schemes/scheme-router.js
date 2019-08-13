@@ -56,6 +56,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+/*
 router.post('/:id/steps', async (req, res) => {
   const stepData = req.body;
   const { id } = req.params; 
@@ -73,17 +74,20 @@ router.post('/:id/steps', async (req, res) => {
     res.status(500).json({ message: 'Failed to create new step' });
   }
 });
+*/
 
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
   try {
+    //Let's make sure the scheme exists. 
     const scheme = await Schemes.findById(id);
 
     if (scheme) {
       const updatedScheme = await Schemes.update(changes, id);
-      res.json(updatedScheme);
+
+      res.status(200).json({message: `Schemes updated: ${updatedScheme}`});
     } else {
       res.status(404).json({ message: 'Could not find scheme with given id' });
     }
