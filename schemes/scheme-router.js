@@ -116,12 +116,12 @@ router.delete('/:id', async (req, res) => {
 async function validateSchemeId(req, res, next) {
   try{
       const {id} = req.params;
-      const user = await users.getById(id);
-      if(user){
-          req.user= user;
+      const scheme = await Schemes.findById(id);
+      if (scheme){
+          req.scheme = scheme;
           next();
       } else {
-       res.status(404).json({ message: "invalid user id" })
+       res.status(404).json({ message: "invalid scheme id" })
       }
   } catch (error) {
       res.status(500).json(error)
