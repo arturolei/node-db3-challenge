@@ -112,4 +112,20 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+//MiddleWare for Validating schemeID
+async function validateSchemeId(req, res, next) {
+  try{
+      const {id} = req.params;
+      const user = await users.getById(id);
+      if(user){
+          req.user= user;
+          next();
+      } else {
+       res.status(404).json({ message: "invalid user id" })
+      }
+  } catch (error) {
+      res.status(500).json(error)
+  }   
+};
+
 module.exports = router;
